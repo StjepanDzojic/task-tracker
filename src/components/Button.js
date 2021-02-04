@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Button = ({ text }) => {
-    return <button className="btn">{text}</button>
+const Button = ({ text, onAdd }) => {
+    return <button className="btn" onClick={onAdd}>{text}</button>
 }
 
-export default Button
+export default Button;
