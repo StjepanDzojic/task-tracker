@@ -1,30 +1,27 @@
 import Header from "./components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(true);
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: "Doctors Appointment",
-      day: "Feb 5th",
-      reminder: true,
-    },
-    {
-      id: 3,
-      text: "Shopping",
-      day: "Feb 7th",
-      reminder: false,
-    },
-    {
-      id: 2,
-      text: "Meeting",
-      day: "Feb 6th",
-      reminder: true,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const tasksFromServer = await fetchTasks();
+      setTasks(tasksFromServer);
+    };
+
+    getTasks()
+  }, []);
+
+  const fetchTasks = async () =>{
+    const res = await fetch('http://localhost:5000/tasks')
+    const data = await res.json()
+    
+    return data
+  }
 
   const addTask = (task) => {
     const id = Math.floor(Math.random() * 10000) + 1;
@@ -39,15 +36,14 @@ function App() {
 
   const toggleReminder = (id) => {
     setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, reminder: !task.reminder } : task
+      tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task
       )
     );
   };
 
   return (
     <div className="container">
-      <Header title="Task tracker" onAdd={() => setShowAddTask(!showAddTask)}  showAdd={showAddTask}/>
+      <Header title="Task tracker" onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
       {showAddTask && <AddTask onAdd={addTask} />}
       <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
     </div>
