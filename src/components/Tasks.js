@@ -1,4 +1,5 @@
 import Task from "./Task";
+import DeleteButton from "./DeleteButton"
 
 const Tasks = ({ tasks, onDelete, onToggle }) => {
   return (

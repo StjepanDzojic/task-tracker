@@ -1,17 +1,17 @@
 import React from "react";
-import { FaTimes } from "react-icons/fa";
+import DeleteButton from "./DeleteButton";
 
-const Task = ({ task, onDelete, onToggle, onAdd }) => {
+const Task = ({ task, onDelete, onToggle }) => {
   return (
     <div
       className={`task ${task.reminder ? "reminder" : ""}`}
-      onClick={() => onToggle(task.id)}
+      onDoubleClick={() => onToggle(task.id)}
     >
       <h3>
-        {task.text}{" "}
-        <FaTimes style={{ color: "red" }} onClick={() => onDelete(task.id)} />{" "}
+        {task.text}
       </h3>
       <p>{task.day}</p>
+      <DeleteButton onDelete={onDelete} task={task} />
     </div>
   );
 };

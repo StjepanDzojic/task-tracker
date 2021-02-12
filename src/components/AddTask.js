@@ -6,19 +6,19 @@ const AddTask = ({ onAdd }) => {
   const [reminder, setReminder] = useState(false);
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if(!text){
-      alert("Please add a task")
-      return
+      alert("Please add a task");
+      return;
     }
 
-    onAdd({ text, day, reminder})
+    onAdd({ text, day, reminder});
 
-    setText("")
-    setsDay("")
-    setReminder(false)
-  }
+    setText("");
+    setsDay("");
+    setReminder(false);
+  };
 
   return (
     <form className="add-form" onSubmit={onSubmit}>
