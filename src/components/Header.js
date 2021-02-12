@@ -1,11 +1,11 @@
 import React from "react";
 import Button from "./Button";
 
-const Header = ({ title, onAdd , showAdd}) => {
+const Header = ({ title, onShow , showAdd}) => {
   return (
     <header className="header">
       <h1>{title}</h1>
-      <Button text={showAdd ? "Close" : "Add"} onAdd={onAdd}/>
+      <Button text={showAdd ? "Hide" : "Show"} onShow={onShow}/>
     </header>
   );
 };

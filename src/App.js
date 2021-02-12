@@ -32,7 +32,6 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
-  //Delete Task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -49,13 +48,13 @@ function App() {
     <div className="container">
       <Header
         title="Task tracker"
-        onAdd={() => setShowAddTask(!showAddTask)}
+        onShow={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask}
       />
       {showAddTask && <AddTask onAdd={addTask} />}
       <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
     </div>
   );
-}
+};
 
 export default App;
